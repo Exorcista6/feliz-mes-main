@@ -514,9 +514,21 @@
       pero estate lista a las <span class="final-time" id="final-time-text">?</span>
     </div>
 
-    <div class="final-addr">
-      <span class="sym">📍dirección:</span> tu casa (pasaré por ti xd)
-    </div>
+<div class="final-addr">
+  <span class="sym">📋 resumen de nuestra cita:</span>
+  <br><br>
+  <span>Plan elegido: <strong id="summary-plan">?</strong></span>
+  <br>
+  <span>Hora elegida: <strong id="summary-time">?</strong></span>
+  <br>
+  <span>Lugar: <strong>tu casa, pasaré por ti xd</strong></span>
+</div>
+
+<div class="final-addr" style="margin-top: 14px;">
+  <span class="sym">📸 importante:</span>
+  <br><br>
+  Toma captura a esto y pásame captura de pantalla por WhatsApp.
+</div>
 
     <div class="gif-area">
       <img src="assets/garu-pucca.gif" alt="❤" />
@@ -723,7 +735,13 @@ function buildTimePicker() {
 
 function confirmTime() {
   if (!selectedTime) return;
+
   document.getElementById('final-time-text').textContent = `${selectedTime}!`;
+
+  // Resumen final de lo elegido
+  document.getElementById('summary-plan').textContent = rouletteResult || 'Plan sorpresa';
+  document.getElementById('summary-time').textContent = selectedTime;
+
   goTo('page-final');
 }
 
