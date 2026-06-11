@@ -410,7 +410,7 @@
 
 <canvas id="matrix-canvas"></canvas>
 <div class="scanlines"></div>
-<footer class="footer">by <a href="http://github.com/Sandreke/feliz-mes" target="_blank" rel="noopener">Sandreke</a></footer>
+<footer class="footer">hecho con amor para la Solsirijillo ❤</footer>
 
 <!-- Page 1: name lock -->
 <section class="page active fade-in" id="page-lock">
@@ -457,7 +457,7 @@
     <div class="card-corner tl"></div><div class="card-corner tr"></div>
     <div class="card-corner bl"></div><div class="card-corner br"></div>
 
-    <div class="big-text">Feliz 3 meses 🥳 y haremos...</div>
+   <div class="big-text">Hoy dejaremos que la ruleta elija nuestra cita...</div>
 
     <div class="divider"></div>
 
@@ -525,7 +525,7 @@
 </section>
 
 <script>
-const UNLOCK_NAME = 'sam'; // expected input, lowercase
+const VALID_NAMES = ['carla', 'solsito', 'carlita']; // expected input, lowercase
 
 // --- Matrix rain background ---
 (function () {
@@ -588,7 +588,14 @@ function tryEnter() {
 }
 
 // --- Roulette ---
-const OPTIONS = ['🎬  cine', '🏓  pickleball', '🍽  cena', '⛳  minigolf', '🏎  go karts', '🎨  pintura', '🏐  volleyball'];
+const OPTIONS = [
+  '🍽  cena romántica',
+  '🎬  película juntos',
+  '💌  Jironeamos?',
+  '📸  recuerdo fotogénico',
+  '🎧  ZacaTv con piqueos',
+  '❤️  coito respetable'
+];
 
 let rouletteResult = null;
 let spinning = false;
@@ -686,7 +693,7 @@ function confirmRoulette() {
 }
 
 // --- Time picker ---
-const TIMES = ['5pm', '6pm', '7pm', '8pm', '9pm'];
+const TIMES = ['1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm'];
 let selectedTime = null;
 
 function buildTimePicker() {
