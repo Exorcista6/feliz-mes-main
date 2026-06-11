@@ -385,6 +385,16 @@
     80%     { transform: translateX(4px); }
   }
   .shake { animation: shake 0.4s ease; }
+  .confirm-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.confirm-actions .btn {
+  padding: 12px 22px;
+}
 
   .footer {
     position: fixed;
@@ -497,12 +507,72 @@
 
     <div class="time-options" id="time-options"></div>
 
-    <button class="btn btn-accent" id="confirm-time-btn" onclick="confirmTime()" disabled>
-      confirmar hora
-    </button>
+<div class="confirm-actions">
+  <button class="btn" onclick="backToPlan()">
+    cambiar plan
+  </button>
+
+  <button class="btn btn-accent" id="confirm-time-btn" onclick="confirmTime()" disabled>
+    confirmar hora
+  </button>
+</div>
   </div>
 </section>
+<!-- Page 4: confirmation -->
+<section class="page" id="page-confirm">
+  <div class="card fade-in">
+    <div class="card-corner tl"></div><div class="card-corner tr"></div>
+    <div class="card-corner bl"></div><div class="card-corner br"></div>
 
+    <h1>Antes de confirmar...</h1>
+
+    <div class="final-addr">
+      <span class="sym">📋 esto elegiste:</span>
+      <br><br>
+      <span>Plan: <strong id="confirm-plan">?</strong></span>
+      <br>
+      <span>Hora: <strong id="confirm-time">?</strong></span>
+    </div>
+
+    <p class="sub" style="margin-top: 22px; margin-bottom: 22px;">
+      ¿Estás segura de confirmar lo confirmado para confirmar?
+    </p>
+
+    <div class="confirm-actions">
+      <button class="btn" onclick="backToPlan()">
+        cambiar plan
+      </button>
+
+      <button class="btn" onclick="backToTime()">
+        cambiar hora
+      </button>
+    </div>
+
+    <div class="confirm-actions" style="margin-top: 14px;">
+      <button class="btn btn-accent" onclick="showNoReturn()">
+        sí, confirmar
+      </button>
+    </div>
+
+    <div id="no-return-box" style="display:none; margin-top: 24px;">
+      <div class="final-addr">
+        <span class="sym">⚠️ no hay marcha atrás</span>
+        <br><br>
+        Si aceptas, esta cita queda sellada oficialmente.
+      </div>
+
+      <div class="confirm-actions" style="margin-top: 16px;">
+        <button class="btn" onclick="hideNoReturn()">
+          no, todavía no
+        </button>
+
+        <button class="btn btn-accent" onclick="finalConfirm()">
+          sí, acepto
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
 <!-- Page 4: final reveal -->
 <section class="page" id="page-final">
   <div class="card fade-in">
@@ -736,9 +806,43 @@ function buildTimePicker() {
 function confirmTime() {
   if (!selectedTime) return;
 
+  document.getElementById('confirm-plan').textContent = rouletteResult || 'Plan sorpresa';
+  document.getElementById('confirm-time').textContent = selectedTime;
+
+  document.getElementById('no-return-box').style.display = 'none';
+
+  goTo('page-confirm');
+}
+
+function backToPlan() {
+  document.getElementById('no-return-box').style.display = 'none';
+
+  rouletteResult = null;
+  selectedTime = null;
+
+  document.getElementById('confirm-roulette-btn').style.display = 'none';
+  document.getElementById('roulette-result').style.display = 'none';
+
+  buildRoulette();
+  goTo('page-roulette');
+}
+
+function backToTime() {
+  document.getElementById('no-return-box').style.display = 'none';
+  goTo('page-time');
+}
+
+function showNoReturn() {
+  document.getElementById('no-return-box').style.display = 'block';
+}
+
+function hideNoReturn() {
+  document.getElementById('no-return-box').style.display = 'none';
+}
+
+function finalConfirm() {
   document.getElementById('final-time-text').textContent = `${selectedTime}!`;
 
-  // Resumen final de lo elegido
   document.getElementById('summary-plan').textContent = rouletteResult || 'Plan sorpresa';
   document.getElementById('summary-time').textContent = selectedTime;
 
