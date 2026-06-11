@@ -1,26 +1,29 @@
-# feliz-mes
+#feliz-mes
 
-A romantic surprise website built for a special date anniversary. It walks through four screens: a name-locked entry, a spinning roulette to pick an activity, a time selector, and a final reveal with the meetup details.
+Una página web romántica sorpresa diseñada para celebrar un aniversario especial. Consta de cuatro pantallas: una entrada con nombre, una ruleta para elegir una actividad, un selector de hora y una pantalla final con los detalles del encuentro.
 
-## How it works
+## Cómo funciona
 
-1. The page unlocks when the recipient types the correct name.
-2. A slot-machine roulette spins through six activity options: cine, pickleball, cena, minigolf, go karts, pintura.
-3. She picks a time (5pm – 9pm).
-4. A final screen shows the message and pickup details.
+1. La página se desbloquea cuando el destinatario escribe el nombre correcto.
 
-## Setup
+2. Una ruleta ofrece seis opciones de actividades: cine, pickleball, cena, minigolf, karts y pintura.
 
-No dependencies. Just open `index.html` in a browser.
+3. El destinatario elige una hora (de 17:00 a 21:00).
 
-To personalize, edit the following variables at the top of the `<script>` tag:
+4. Una pantalla final muestra el mensaje y los detalles del encuentro.
+
+## Configuración
+
+Sin dependencias. Simplemente abre `index.html` en un navegador.
+
+Para personalizarla, edita las siguientes variables al principio de la etiqueta `<script>`:
 
 ```js
-const UNLOCK_NAME = 'sam'; // name to unlock the page (lowercase)
+const UNLOCK_NAME = 'sam'; // Nombre para desbloquear la página (en minúsculas)
 ```
 
-Place your gif at `assets/garu-pucca.gif` or update the `src` in the final page section.
+Coloca tu GIF en `assets/garu-pucca.gif` o actualiza la ruta `src` en la sección final de la página.
 
 ## Stack
 
-HTML, CSS, JavaScript — single file, no frameworks.
+HTML, CSS, JavaScript: un solo archivo, sin frameworks.
