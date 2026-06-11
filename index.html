@@ -571,11 +571,16 @@ function goTo(id) {
 
 // --- Name gate ---
 function tryEnter() {
-  const val = document.getElementById('name-input').value.trim().toLowerCase();
+  const val = document.getElementById('name-input').value
+    .trim()
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "");
+
   const errEl = document.getElementById('error-msg');
   const card = document.querySelector('#page-lock .card');
 
-  if (val === UNLOCK_NAME) {
+  if (VALID_NAMES.includes(val)) {
     errEl.classList.remove('show');
     goTo('page-roulette');
     buildRoulette();
